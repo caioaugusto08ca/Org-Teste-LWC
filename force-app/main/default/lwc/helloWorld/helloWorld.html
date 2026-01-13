@@ -1,0 +1,97 @@
+<template>
+    <lightning-card title="Cadastro" icon-name="custom:custom14">
+        <div class="slds-m-around_medium">
+          
+        <template if:true = {sexoSelecionado}>
+        <template if:true = {sexo}>
+            <lightning-avatar src="https://www.lightningdesignsystem.com/assets/images/avatar1.jpg"></lightning-avatar> 
+            <lightning-helptext content="Avatar aparece de acordo com o sexo selecionado"></lightning-helptext>
+        </template>
+        <template if:false = {sexo}>
+            <lightning-avatar src="https://www.lightningdesignsystem.com/assets/images/avatar2.jpg"></lightning-avatar>
+            <lightning-helptext content="Avatar aparece de acordo com o sexo selecionado"></lightning-helptext> 
+        </template>
+        </template>
+        <br/>
+           
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="3" padding="around-small">
+                <div class="custom-box slds-box slds-p-around_medium slds-text-align_center"><p>Hello, {greeting}!  </p></div>
+            </lightning-layout-item>
+            <lightning-layout-item size="3" padding="around-small">
+                <div class="custom-box slds-box slds-p-around_medium slds-text-align_center"><p>You are {clickedButtonLabelIdade} years-old.</p></div>
+            </lightning-layout-item>
+            <lightning-layout-item size="3" padding="around-small">
+                <div class="custom-box slds-box slds-p-around_medium slds-text-align_center"><p>Your phone: {clickedButtonLabelPhone}</p></div>
+            </lightning-layout-item>
+            <lightning-layout-item size="3" padding="around-small">
+                <div class="custom-box slds-box slds-p-around_medium slds-text-align_center"><p>Serie: {serie}</p> </div>
+            </lightning-layout-item>
+        </lightning-layout>
+        
+
+        
+          
+          
+          
+          <p>{msgEstudante}</p>
+          
+         
+        
+            <template if:true='{estudante}'>
+                <p>É estudante.</p> 
+            </template>
+
+          <lightning-input label="Name" value={greeting} onchange={changeHandler} placeholder="Digite seu nome" name="greeting"></lightning-input>
+          <lightning-input  type=number label="Age" value={age} onchange={changeHandlerIdade} placeholder="Digite sua idade" name="age"></lightning-input>
+          <h2 class="header">É estudante</h2>
+          <lightning-input type="checkbox" checked="estudante" onchange={changeHandlerCheckbox}></lightning-input>
+          <lightning-input label="Phone" value={phone} onchange={changeHandlerPhone} placeholder="Digite seu telefone"></lightning-input>
+          
+          <template if:true={estudante}>
+             <lightning-combobox
+                    name="serie"
+                    label="Qual serie está ?"
+                    value={serie}
+                    placeholder="Select serie..."
+                    options={optionsSerie}
+                    onchange={handleChangeSerie} >
+             </lightning-combobox>
+            </template>
+                <br/>
+
+                <lightning-radio-group name="radioGroup"
+                                        label="Sexo: "
+                                        options={options}
+                                        value={sexoSelecionado}
+                                        type="radio"
+                                        onchange={changeHandlerSexo}>
+                </lightning-radio-group>
+            
+                <br/>
+
+            <lightning-button-group>
+                <lightning-button variant="brand" label="Change" title="Primary action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+                <lightning-button variant="success" label="Empty" title="Successful action" onclick={handleClick2} class="slds-m-left_x-small"></lightning-button>
+            </lightning-button-group>
+
+            <br/> 
+            <lightning-input label="País" value={pais} onchange={changeHandlerMap} placeholder="Digite seu país"></lightning-input>
+            <br/>
+            <lightning-button variant="brand" label="Search" title="Primary action" onclick={handleClickMap} class="slds-m-left_x-small"></lightning-button>
+            <br/>
+            <br/>
+            <lightning-map map-markers={mapMarkers} zoom-level={zoomLevel}> </lightning-map>
+            <br/>
+
+            <lightning-button-icon
+            icon-name="utility:settings"
+            variant="bare"
+            alternative-text="Settings"
+            icon-class="slds-m-around_medium">
+            </lightning-button-icon>
+            
+
+        </div>
+    </lightning-card>
+</template>
